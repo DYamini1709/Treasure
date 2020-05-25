@@ -1,0 +1,530 @@
+//Main activity
+
+
+package com.example.dell.covidcrisis;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.view.Menu;
+import android.view.MenuItem;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+
+    public void Admin(View view){
+        Intent intent=new Intent(getApplicationContext(),Admin.class);
+        startActivity(intent);
+    }
+
+    public void User(View view){
+        Intent intent=new Intent(getApplicationContext(),User.class);
+        startActivity(intent);
+    }
+
+    public void Registration(View view){
+        Intent intent=new Intent(getApplicationContext(),Registration.class);
+        startActivity(intent);
+    }
+
+  /*@Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(this).setMessage("Do you want to exit?").setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
+                }).setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        }).create().show();
+    } */
+}
+
+//Admin
+
+package com.example.dell.covidcrisis;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class Admin extends AppCompatActivity {
+    EditText name,pwd;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_admin);
+    }
+
+
+    public void login(View view){
+
+        name= (EditText) findViewById(R.id.name);
+        pwd= (EditText) findViewById(R.id.pwd);
+        if(name.getText().toString().equals("") || pwd.getText().toString().equals("")){
+            Toast.makeText(getApplicationContext(), "Enter Credentials", Toast.LENGTH_LONG).show();
+        }else if(name.getText().toString().equalsIgnoreCase("admin") || pwd.getText().toString().equalsIgnoreCase("admin")){
+            Intent intent=new Intent(getApplicationContext(),Admin.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(getApplicationContext(),"Invalid Credentials",Toast.LENGTH_LONG).show();
+        }
+
+    }
+}
+
+//Activity Registration
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.dell.greyapplication.Registration"
+    android:background="#808080">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text=" Register"
+        android:id="@+id/textView4"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="35dp" />
+
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/name"
+                android:hint="User Name"
+                android:textColor="#000000"
+
+                android:padding="15dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/textView4"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="34dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:ems="10"
+                android:id="@+id/email"
+                android:hint="Email ID"
+                android:textColor="#000000"
+                android:padding="15dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/pwd"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:ems="10"
+                android:id="@+id/phn"
+                android:hint="Phone Number"
+                android:textColor="#000000"
+
+                android:padding="15dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_centerVertical="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/pwd"
+                android:hint="Password"
+                android:textColor="#000000"
+                android:padding="15dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/name"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPostalAddress"
+                android:ems="10"
+                android:id="@+id/loc"
+                android:hint="Address"
+                android:textColor="#000000"
+
+                android:padding="15dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/phn"
+                android:layout_centerHorizontal="true" />
+
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register"
+                android:textColor="#000000"
+                android:id="@+id/reg"
+                android:onClick="reg"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="87dp" />
+
+</RelativeLayout>
+
+//Activity User
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.dell.greyapplication.User"
+    android:background="#808080">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="User Login"
+        android:id="@+id/textView4"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55dp" />
+
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sid"
+                android:hint="User name"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:padding="15dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_above="@+id/pwd"
+                android:layout_centerHorizontal="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/pwd"
+                android:hint="Password"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:padding="15dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_above="@+id/login"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginBottom="68dp" />
+
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:id="@+id/login"
+                android:onClick="login"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_alignLeft="@+id/textView4"
+                android:layout_alignStart="@+id/textView4"
+                android:layout_marginBottom="231dp" />
+
+
+
+
+</RelativeLayout>
+
+//Content main
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_main" tools:context=".MainActivity"
+    android:background="@drawable/ap">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="COVID-19 CRISIS"
+        android:id="@+id/textView"
+        android:textSize="45sp"
+        android:textColor="#FFFFFF"
+        android:textStyle="italic"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Admin"
+        android:onClick="Admin"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:id="@+id/admin"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/student"
+        android:layout_alignEnd="@+id/student" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Registration"
+        android:onClick="Registration"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:id="@+id/textView3"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="User"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:id="@+id/student"
+        android:onClick="User"
+        android:layout_marginBottom="111dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+
+
+</RelativeLayout>
+
+//Activity main
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:fitsSystemWindows="true"
+    tools:context=".MainActivity">
+
+    <android.support.design.widget.AppBarLayout android:layout_height="wrap_content"
+        android:layout_width="match_parent" android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar android:id="@+id/toolbar"
+            android:layout_width="match_parent" android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary" app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_main" />
+
+    <android.support.design.widget.FloatingActionButton android:id="@+id/fab"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end" android:layout_margin="@dimen/fab_margin"
+        android:src="@android:drawable/ic_dialog_email" />
+
+</android.support.design.widget.CoordinatorLayout>
+
+//Activity admin
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.dell.greyapplication.Admin">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Admin Login"
+        android:id="@+id/textView4"
+        android:textColor="#000000"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp" />
+
+
+
+
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/name"
+                android:hint="User Name"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:layout_marginTop="50dp"
+                android:padding="15dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/textView4"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:ems="10"
+                android:id="@+id/pwd"
+                android:hint="Password"
+                android:textColor="#000000"
+                android:textColorHint="#000000"
+                android:layout_marginTop="43dp"
+                android:padding="15dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_below="@+id/name"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:id="@+id/login"
+                android:onClick="login"
+                android:layout_gravity="center_horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="172dp" />
+
+
+</RelativeLayout>
+
+//Registration
+
+
+package com.example.dell.covidcrisis;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.HashMap;
+
+public class Registration extends AppCompatActivity {
+    EditText name,pwd,email,phn,loc;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_registration);
+    }
+    public void reg(View view) {
+        name = (EditText) findViewById(R.id.name);
+        pwd = (EditText) findViewById(R.id.pwd);
+        email = (EditText) findViewById(R.id.email);
+        phn = (EditText) findViewById(R.id.phn);
+        loc = (EditText) findViewById(R.id.loc);
+
+        Toast.makeText(getApplicationContext(),"Registration Success",Toast.LENGTH_LONG).show();
+        Intent i=new Intent(getApplicationContext(),Registration.class);
+        startActivity(i);
+
+    }
+
+
+    }
+
+
+//User
+
+
+package com.example.dell.covidcrisis;
+
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+
+public class User extends AppCompatActivity {
+    EditText name,pwd;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_user);
+    }
+
+
+    public void login(View view){
+
+        name= (EditText) findViewById(R.id.name);
+        pwd= (EditText) findViewById(R.id.pwd);
+        if(name.getText().toString().equals("") || pwd.getText().toString().equals("")){
+            Toast.makeText(getApplicationContext(), "Enter Credentials", Toast.LENGTH_LONG).show();
+        }else if(name.getText().toString().equalsIgnoreCase("admin") || pwd.getText().toString().equalsIgnoreCase("admin")){
+            Intent intent=new Intent(getApplicationContext(),User.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(getApplicationContext(),"Invalid Credentials",Toast.LENGTH_LONG).show();
+        }
+
+    }
+}
